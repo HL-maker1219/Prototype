@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Deadly
+  - Enemy
+  - FlyingEnemy
+  - Worm
+  - EnemyJunk
+  - DashPowerUp
+  - djPowerUp
+  - GetAttack
+  - Lightning
   layers:
   - Default
   - TransparentFX
@@ -13,10 +23,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Solid
+  - Player
+  - Enemy
   - 
   - 
   - 
