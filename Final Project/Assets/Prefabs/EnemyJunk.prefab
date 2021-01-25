@@ -312,6 +312,7 @@ MonoBehaviour:
   targetSpot: {fileID: 1694884892}
   Col: 0
   Target: {fileID: 0}
+  JAttack: {fileID: 8300000, guid: c5f4ed5a3797c1145a83ac14c10ceb23, type: 3}
 --- !u!114 &324377799
 MonoBehaviour:
   m_ObjectHideFlags: 0

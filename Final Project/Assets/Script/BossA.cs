@@ -15,11 +15,14 @@ public class BossA : MonoBehaviour
     public Transform player;
     public float attackDistance;
 
+    private Animator _bAnim;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+        _bAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,6 +32,7 @@ public class BossA : MonoBehaviour
         {
             if (Vector3.Distance(player.position, transform.position) <= attackDistance)
             {
+                _bAnim.SetInteger("Anim_stat", 1);
                 Collider2D[] playerToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, attackPlayer);
                 for (int i = 0; i < playerToDamage.Length; i++)
                 {
@@ -40,6 +44,7 @@ public class BossA : MonoBehaviour
         else
         {
             timeBtwAttack -= Time.deltaTime;
+            _bAnim.SetInteger("Anim_stat", 0);
         }
     }
 

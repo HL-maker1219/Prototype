@@ -16,6 +16,9 @@ public class Junk : MonoBehaviour
     private Rigidbody2D enemyRb;
     public Transform Target;
 
+    private AudioSource junkAudio;
+    public AudioClip JAttack;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +26,7 @@ public class Junk : MonoBehaviour
         animator = GetComponent<Animator>();
         health = GameObject.Find("Player").GetComponent<Health>();
         enemyRb = GetComponent<Rigidbody2D>();
-
+        junkAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,6 +55,7 @@ public class Junk : MonoBehaviour
     void Hit()
     {
         animator.SetInteger("AnimState", 1);
+        junkAudio.PlayOneShot(JAttack, 1.0f);
         attackDelay = 2f;
         if (_detectCollisions == true)
         {

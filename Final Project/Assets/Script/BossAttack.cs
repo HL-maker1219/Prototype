@@ -11,7 +11,7 @@ public class BossAttack : MonoBehaviour
     public int onlyUpdateOnce = 1;
     public float attackDelay = 3f;
     public Transform player;
-    public float speed = 1f;
+    public float speed;
     public Health health;
     public float crashForce = 8f;
     private Rigidbody2D playerRb;
@@ -20,22 +20,24 @@ public class BossAttack : MonoBehaviour
     public Transform laserPos1;
     public Transform laserPos2;
 
+    private AudioSource BossAudio;
+    public AudioClip crashSound;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         health = GameObject.Find("Player").GetComponent<Health>();
         playerRb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+        BossAudio = GetComponent<AudioSource>();
     }
 
     
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-
-        float step = speed * Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position, player.position, step);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 0) * speed;
 
         if (Vector3.Distance(player.position, transform.position) <= attackDistance)
         {
@@ -57,34 +59,32 @@ public class BossAttack : MonoBehaviour
         }
         else if (attackMode == 2)
         {
-            speed = 1;
+            speed = 2;
             Summon();
         }
         else if (attackMode == 3)
         {
-            speed = 1;
+            speed = 2;
             Laser();
         }
-        else if (attackMode == 4)
-        {
-            speed = 1;
-        }
         
-        attackMode = Random.Range(1, 4);
+        
+        attackMode = Random.Range(1, 3);
         StartCoroutine(OnAttack());
 
     }
 
     void Crash()
     {
-        speed = 5f;
+        speed = 15f;
+        CrashSound();
     }
 
     void OnCollisionEnter2D (Collision2D col)
     {
         if (col.gameObject.tag == "Player")
         {
-            if (speed == 4f)
+            if (speed == 15f)
             {
                 health.DamagePlayer(1);
                 playerRb.AddForce(Vector2.up * crashForce, ForceMode2D.Impulse);
@@ -96,12 +96,17 @@ public class BossAttack : MonoBehaviour
     {
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
         Instantiate(enemyPrefabs[enemyIndex], transform.position = new Vector2(transform.position.x - 2,transform.position.y), enemyPrefabs[enemyIndex].transform.rotation);
-        Instantiate(enemyPrefabs[enemyIndex], transform.position = new Vector2(transform.position.x + 2, transform.position.y), enemyPrefabs[enemyIndex].transform.rotation);
+        Instantiate(enemyPrefabs[enemyIndex], transform.position = new Vector2(transform.position.x - 1, transform.position.y), enemyPrefabs[enemyIndex].transform.rotation);
     }
 
     void Laser()
     {
         Instantiate(laserPrefab, laserPos1.position, laserPrefab.transform.rotation);
         Instantiate(laserPrefab, laserPos2.position, laserPrefab.transform.rotation);
+    }
+
+    void CrashSound()
+    {
+        BossAudio.PlayOneShot(crashSound, 1.0f);
     }
 }
