@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
 
     private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +35,5 @@ public class PlayerController : MonoBehaviour
             _animator.SetInteger("Anim_Stat", 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            _animator.SetInteger("Anim_Stat", 2);
-        }
     }
 }

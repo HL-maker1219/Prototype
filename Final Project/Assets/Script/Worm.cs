@@ -12,12 +12,19 @@ public class Worm : MonoBehaviour
 
     private Animator animator;
 
+    private AudioSource _wormAudio;
+
+    public AudioClip strike;
+
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
 
         playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+
+        _wormAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,7 +38,12 @@ public class Worm : MonoBehaviour
         if (collison.gameObject.tag == "Player")
         {
             playerRb.AddForce(Vector2.up * hitForce, ForceMode2D.Impulse);
-
+            StrikeSound();
         }
+    }
+
+    void StrikeSound()
+    {
+        _wormAudio.PlayOneShot(strike, 1.0f);
     }
 }

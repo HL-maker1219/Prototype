@@ -12,11 +12,15 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask whatIsEnemies;
     public int damage;
     public bool AttacakOnTrigger;
+    private Animator _animator;
+    private AudioSource _playerAudio;
+    public AudioClip attack;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _animator = GetComponent<Animator>();
+        _playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,6 +32,8 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.X))
                 {
+                    _animator.SetInteger("Anim_Stat", 2);
+                    Attack();
                     Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                     for (int i = 0; i < enemiesToDamage.Length; i++)
                     {
@@ -58,5 +64,10 @@ public class PlayerAttack : MonoBehaviour
         {
             AttacakOnTrigger = true;
         }
+    }
+
+    void Attack()
+    {
+        _playerAudio.PlayOneShot(attack, 1.0f);
     }
 }

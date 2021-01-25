@@ -32,12 +32,16 @@ public class PlayerDash : MonoBehaviour{
     public bool PU;
     public bool djPU;
 
+    private AudioSource _playerAudio;
+    public AudioClip jumpSound;
+    public AudioClip dashSound;
 
-    
+
 
     void Start(){
         extraJumps = extraJumpValue;
         rb = GetComponent<Rigidbody2D>();
+        _playerAudio = GetComponent<AudioSource>();
     }
 
     void FixedUpdate(){
@@ -69,6 +73,7 @@ public class PlayerDash : MonoBehaviour{
                     transform.position = Dash;
                     timer = cooldownTime;
                     active = true;
+                    DashSound();
                 }
                 else if (Input.GetKeyDown(KeyCode.A))
                 {
@@ -76,6 +81,7 @@ public class PlayerDash : MonoBehaviour{
                     transform.position = Dash;
                     timer = cooldownTime;
                     active = true;
+                    DashSound();
                 }
             }
         }
@@ -92,10 +98,12 @@ public class PlayerDash : MonoBehaviour{
             {
                 rb.velocity = Vector2.up * jumpForce;
                 extraJumps--;
+                JumpSound();
             }
             else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true)
             {
                 rb.velocity = Vector2.up * jumpForce;
+                JumpSound();
             }
         }
         
@@ -109,6 +117,7 @@ public class PlayerDash : MonoBehaviour{
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up * jumpForce;
+            JumpSound();
         }
 
         if (Input.GetKey(KeyCode.Space) && isJumping == true) {
@@ -116,6 +125,8 @@ public class PlayerDash : MonoBehaviour{
             if (jumpTimeCounter > 0) {
                 rb.velocity = Vector2.up * jumpForce;
                 jumpTimeCounter -= Time.deltaTime;
+                if (jumpTimeCounter == 0.55)
+                    JumpSound();
             } else {
                 isJumping = false;
             }
@@ -140,6 +151,15 @@ public class PlayerDash : MonoBehaviour{
         }
     }
 
+    void JumpSound()
+    {
+        _playerAudio.PlayOneShot(jumpSound, 1.0f);
+    }
+
+    void DashSound()
+    {
+        _playerAudio.PlayOneShot(dashSound, 1.0f);
+    }
 
 }
 
