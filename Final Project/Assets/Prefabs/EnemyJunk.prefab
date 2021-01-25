@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 4288458022856887489}
   - component: {fileID: 4288458022856887490}
   - component: {fileID: 1887840878}
+  - component: {fileID: 324377799}
   m_Layer: 11
   m_Name: EnemyJunk
   m_TagString: Enemy
@@ -227,7 +228,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 30
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -235,7 +236,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!61 &4288458022856887492
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -249,18 +250,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.003917694, y: -0.054851294}
+  m_Offset: {x: 0.003917694, y: -0.025345087}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    oldSize: {x: 1.8285714, y: 1.8285714}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8312607, y: 2.4502974}
+  m_Size: {x: 1.3591652, y: 1.6831381}
   m_EdgeRadius: 0
 --- !u!114 &4288458022856887489
 MonoBehaviour:
@@ -310,6 +311,19 @@ MonoBehaviour:
   targetSpot: {fileID: 1694884892}
   Col: 0
   Target: {fileID: 0}
+--- !u!114 &324377799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288458022856887497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f45319f91583e44a9672ccf8ee185c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
 --- !u!1 &4288458023636076429
 GameObject:
   m_ObjectHideFlags: 0

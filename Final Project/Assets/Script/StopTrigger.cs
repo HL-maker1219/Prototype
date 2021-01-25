@@ -16,9 +16,12 @@ public class StopTrigger : MonoBehaviour
 
     public float speed = 1f;
 
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         Rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player").transform;
     }
@@ -26,6 +29,8 @@ public class StopTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetInteger("AnimState", 0);
+
         GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 0) * -speed;
 
         if (Rb.velocity.x > 0)

@@ -10,16 +10,20 @@ public class Worm : MonoBehaviour
 
     public float hitForce = 1f;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        animator.SetInteger("AnimState", 0);
     }
 
     void OnCollisionEnter2D (Collision2D collison)
