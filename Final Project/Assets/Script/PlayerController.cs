@@ -20,13 +20,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("left"))
         {
            spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
             _animator.SetInteger("Anim_Stat", 1); 
         }
         else if (Input.GetKey("right"))
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
             _animator.SetInteger("Anim_Stat", 1);
         }
         else

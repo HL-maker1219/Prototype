@@ -14,7 +14,6 @@ public class Health : MonoBehaviour
 
     public float hitForce = 1;
 
-    public bool Alive;
 
     // Start is called before the first frame update
     void Start()
