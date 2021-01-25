@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public GameObject[] enemyPrefabs;
     // Start is called before the first frame update
     void Start()
     {
-        RespawnManager.instance.Respawn();
+        
     }
 
     // Update is called once per frame

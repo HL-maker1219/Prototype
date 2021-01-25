@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
 
     private AudioSource _menuAudio;
     public AudioClip menuAudio;
-    public AudioClip introAudio;
 
     void Start()
     {
@@ -16,7 +15,7 @@ public class MainMenu : MonoBehaviour
     }
     void Update()
     {
-        _menuAudio.PlayOneShot(menuAudio, 20f);
+        _menuAudio.PlayOneShot(menuAudio);
     }
     public void PlayGame()
     {
